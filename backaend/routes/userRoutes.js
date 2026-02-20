@@ -1,0 +1,13 @@
+import express from "express";
+import { addUser,deleteUser, getAllUsers, getUserById, updateUser ,login,identityadd} from "../controllers/usercontroller.js";
+import upload from "../multer/pdf_csv.js";
+var router=express.Router();
+import userupload from "../multer/usersimage.js";
+router.post("/adduser", userupload.single("image"), addUser);
+router.get("/getallusers",getAllUsers);
+router.get("/getuserbyid/:id",getUserById);
+router.put("/updateuser/:id", userupload.single("image"), updateUser);
+router.delete("/deleteuser/:id",deleteUser);
+router.post("/login",login);
+router.post("/identityadd/:id", upload.single("identity_image"), identityadd);
+export default router;
